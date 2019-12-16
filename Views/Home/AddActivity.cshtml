@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Add Activity";
+}
+@model Acitivites
+<div class="container">
+    <nav class="navbar"><h1>Dojo Activity Center</h1>
+    <div class="text-right">
+        <a href="/success">Home</a> | <a href="/logout">Logout</a>
+    </div>
+    </nav>
+    <h1>Create an Activity</h1>
+    <form asp-action="CreateActivity" asp-controller="Home" method="post">
+        <span asp-validation-for="Title"></span>
+        <label asp-for="Title">title</label>
+        <input asp-for="Title"><br>
+        <span asp-validation-for="Time"></span>
+        <label asp-for="Time">Time</label>
+        <input type="time" asp-for="Time"><br>
+        <span asp-validation-for="Date"></span>
+        <label asp-for="Date">Date</label>
+        <input type="date" asp-for="Date"><br>
+        <span asp-validation-for="Duration"></span>
+        <label asp-for="Duration">Duration</label>
+        <input asp-for="Duration"><br>
+        <select asp-for="UnitOfTime">
+            <option value="Hours">Hours</option>
+            <option value="Minutes">Minutes</option>
+            <option value="Days">Days</option>
+        </select> <br>
+        <span asp-validation-for="Desc"></span>
+        <label asp-for="Desc">Description</label>
+        <textarea asp-for="Desc" cols="30"></textarea>
+        <button class="btn btn-primary">Create Activity</button>
+        <input type="hidden" asp-for="CreatorId" value="@ViewBag.UserId">
+    </form>
+
+
+</div>

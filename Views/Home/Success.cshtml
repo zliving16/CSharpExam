@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Acitivites>
+<nav class="navbar">
+<h1>Dojo Activity Center</h1>
+    <div class="text-right">
+
+    <h5>Welcome @ViewBag.UserName</h5>
+    <a href="/logout">Logout</a>
+    </div>
+</nav>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Cordinator</th>
+            <th>No Of Participants</th>
+            <th>Actions</th>
+        </tr>
+        @foreach(var item in @Model){
+            <tr>
+                <td><a href="/activity/@item.ActivityId">@item.Title</a></td>
+                <td>@item.Date.ToString("M/d") @item.Time.ToString("h:mm tt")</td>
+                <td>@item.Duration @item.UnitOfTime</td>
+                <td>@item.Creator.Name</td>
+                <td>@item.UsersAtEvent.Count</td>
+                @if(ViewBag.UserId==item.CreatorId){
+                    <td><a href="/delete/@item.ActivityId/@ViewBag.UserId">Delete</a></td>
+                }
+                else if(item.UsersAtEvent.Any(u=>u.UserId==ViewBag.UserId)){
+                    <td><a href="/leave/@item.ActivityId/@ViewBag.UserId">Leave</a></td>
+                }
+                else{
+                    <td><a href="/join/@item.ActivityId/@ViewBag.UserId">Join</a></td>
+                }
+            </tr>
+
+        }
+    </table>
+<a class="btn btn-primary" href="/addactivity">Add New activity</a>
+</div>

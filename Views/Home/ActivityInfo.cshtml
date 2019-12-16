@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Acitivites
+<nav class="navbar">
+<h1>Dojo Activity Center</h1>
+    <div class="text-right">
+
+    <a href="/success">HOme</a> |
+    <a href="/logout">Logout</a>
+    </div>
+</nav>
+<div class="container">
+    @if(ViewBag.UserId==Model.CreatorId){
+        <a class="btn btn-primary" href="/delete/@Model.ActivityId/@ViewBag.UserId">Delete</a>
+    }
+    else if(Model.UsersAtEvent.Any(u=>u.UserId==ViewBag.UserId)){
+        <a class="btn btn-primary" href="/leave/@Model.ActivityId/@ViewBag.UserId">Leave</a>
+    }
+    else{
+        <a class="btn btn-primary" href="/join/@Model.ActivityId/@ViewBag.UserId">Join</a>
+    }
+
+    <h1>@Model.Title</h1>
+    <p>Event Cordinator: @Model.Creator.Name</p>
+    <p>Description</p>
+    <p>@Model.Desc</p>
+    <h4>Participbants</h4>
+    <ul>
+
+    @foreach(var item in Model.UsersAtEvent){
+        <li>@item.User.Name</li>
+    }
+    </ul>
+</div>

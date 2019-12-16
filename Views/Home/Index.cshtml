@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model UsersWrapper
+
+
+
+<div class="container">
+    <h1 style="display:inline-block;" class="display-4">Welcome to the Dojo Activity Center</h1>
+    <!-- <a style="display:inline-block;" href="/login">Login</a> -->
+    <form asp-action="Register" asp-controller="Home" method="post">
+        <span asp-validation-for="NewUser.Name"></span>
+        <label asp-for="NewUser.Name">Name</label>
+        <input asp-for="NewUser.Name"><br>
+        <span asp-validation-for="NewUser.Email"></span>
+        <label asp-for="NewUser.Email">Email</label>
+        <input asp-for="NewUser.Email"><br>
+        <span asp-validation-for="NewUser.Password"></span>
+        <label  asp-for="NewUser.Password">Password</label>
+        <input tyep="password" asp-for="NewUser.Password"><br>
+        <span asp-validation-for="NewUser.Confirm"></span>
+        <label asp-for="NewUser.Confirm">Confirm</label>
+        <input tyep="password" asp-for="NewUser.Confirm"><br>
+        <button class="btn btn-primary">Sign Up Now</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+    <h1 style="display:inline-block;" class="display-4">Login for this Site!</h1>
+    <!-- <a style="display:inline-block;" href="/">Home</a> -->
+    <form asp-action="Login" asp-controller="Home" method="post">
+        <span asp-validation-for="LoginUser.Email"></span>
+        <label asp-for="LoginUser.Email">Email</label>
+        <input asp-for="LoginUser.Email"><br>
+        <span asp-validation-for="LoginUser.Password"></span>
+        <label asp-for="LoginUser.Password">Password</label>
+        <input tyep="password" asp-for="LoginUser.Password"><br>
+        <button class="btn btn-primary">Login</button>
+
+
+    </form>
+</div>
